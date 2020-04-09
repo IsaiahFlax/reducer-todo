@@ -16,6 +16,10 @@ export const reducerFunction = (state, action) => {
                     id: Date.now()
                     
             }]
+        case "TOGGLE_COMPLETED":
+            return {
+                
+                            };
         case "REMOVE_ITEM":
             return state.filter(item => !item.completed);
 

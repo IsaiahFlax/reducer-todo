@@ -1,6 +1,16 @@
 import React, { useState, useReducer } from "react";
+import styled from 'styled-components'
 
 import { reducerFunction, initialState } from "../reducers/reducer";
+
+const StylesP = styled.p`
+${item=>item.item.completed ? `
+text-decoration: line-through;
+` : `
+text-decoration: none;
+${console.log("styled props", item.item.completed)}
+`}
+`
 
 const Form = () => {
   
@@ -38,14 +48,10 @@ const Form = () => {
     <div>
     {state.map(item => {
         return (
-          <div key={item.id} onClick={()=>{ 
-            if(!item.completed){
-                item.completed = true
-            } else {
-                item.completed = false
-            }
-          console.log('clicked', item.completed)}}>
-          {item.item}
+          <div>
+          <StylesP item={item} key={item.id} onClick={()=>{ 
+                item.completed ? item.completed = false : item.completed = true
+          console.log('clicked', item.completed)}}>{item.item}</StylesP>
           </div>
         );
       })}
