@@ -23,6 +23,7 @@ const Form = () => {
 
   return (
    <div>
+
        <input
         className="item-input"
         type="text"
@@ -30,28 +31,32 @@ const Form = () => {
         value={newItem}
         onChange={handleChanges}
        />
-       <button
+       <button type="submit"
             onClick={() => {
                 dispatch({
                     type: 'ADD_ITEM', payload: newItem
                 });
+                setNewItem("");
             }}
         >Add Item...
         </button>
-        <button
+        <button type="button"
             onClick={() => {
                 dispatch({ 
                     type: 'REMOVE_ITEM'});
             }}>
                 Clear Completed
         </button>
+
     <div>
-    {state.map(item => {
+    {state.todos.map(item => {
         return (
-          <div>
-          <StylesP item={item} key={item.id} onClick={()=>{ 
-                item.completed ? item.completed = false : item.completed = true
-          console.log('clicked', item.completed)}}>{item.item}</StylesP>
+          <div key={item.id}>
+          <StylesP item={item} onClick={() => {
+                dispatch({
+                  type: 'TOGGLE_COMPLETED', id: item.id
+              });
+            }}>{item.item}</StylesP>
           </div>
         );
       })}
