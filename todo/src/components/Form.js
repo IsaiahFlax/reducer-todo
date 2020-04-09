@@ -38,7 +38,13 @@ const Form = () => {
     <div>
     {state.map(item => {
         return (
-          <div>
+          <div key={item.id} onClick={()=>{ 
+            if(!item.completed){
+                item.completed = true
+            } else {
+                item.completed = false
+            }
+          console.log('clicked', item.completed)}}>
           {item.item}
           </div>
         );

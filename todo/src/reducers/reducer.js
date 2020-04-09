@@ -17,11 +17,8 @@ export const reducerFunction = (state, action) => {
                     
             }]
         case "REMOVE_ITEM":
-            return {
-
-            }
-        case "TOGGLE_COMPLETE":
             return state.filter(item => !item.completed);
+
         default: 
             return state
     }
